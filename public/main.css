@@ -1,0 +1,113 @@
+/* .wrap {
+    /* width:
+} */
+
+.jumbotron {
+    color: #007BFF;
+}
+
+.wrap {
+    display: flex;
+}
+
+.wrap > div:first-child {
+    width: 130%;
+}
+
+.wrap > div:last-child {
+    width: 50%;
+}
+
+h1 {
+    color: #007BFF;
+}
+
+.scoresheet{
+    display: flex;
+}
+
+.team-pst-wale > h3 {
+    color: #007BFF;
+}
+
+.team-pst-kola > h3 {
+    color: #28A745;
+}
+
+div.team-pst-wale, div.team-pst-kola {
+    margin: 0 10px;
+}
+
+p.team-pst-wale, p.team-pst-kola {
+    margin: 0 10px;
+}
+
+p.team-pst-wale {
+    color: #007BFF;
+}
+
+p.team-pst-kola {
+    color: #28A745;
+}
+
+thead, td {
+    padding: 5px 20px;
+}
+
+td:nth-of-type(n+2) {
+    text-align: center;
+}
+
+thead {
+    font-weight: 600;
+    color: #28A745;
+    text-align: center;
+}
+
+tr:nth-of-type(2n+1) {
+    background-color: #eee;
+}
+
+tbody > tr:hover {
+    color: #007BFF;
+}
+
+tr {
+    border: 1px solid white;
+    /* color: #007BFF; */
+}
+
+ul {
+    list-style-type: none; 
+}
+
+ul li:before {
+    content: "";
+    background-size: 10px;
+    margin-right: 10px;
+    margin-left: -20px;
+    display: inline-block;
+    background-image: url('football.png');
+    height: 10px;
+    width: 10px;
+    background-repeat: no-repeat;
+}
+
+input[type="number"] {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.red {
+    color: #E63838;
+}
+
+.red:hover {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+main {
+    width: 80%;
+    margin: auto;
+}

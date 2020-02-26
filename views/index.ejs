@@ -1,0 +1,132 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Brothers League Table</title>
+</head>
+<body>
+    <header>
+        <div class="jumbotron">
+            <h1>Brothers League Table</h1>
+        </div>
+    </header>
+    <div class="container">
+    <main>
+        <br>
+        <table class="standings">
+            <thead>
+                <td>S/N</td>
+                <td>Team</td>
+                <td>MP</td>
+                <td>W</td>
+                <td>D</td>
+                <td>L</td>
+                <td>GF</td>
+                <td>GA</td>
+                <td>GD</td>
+                <td>Pts</td>
+            </thead>
+            <tbody>
+                <tr id="t1">
+                    <td>1</td>
+                    <td>Team Pst Wale</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr id="t2">
+                    <td>2</td>
+                    <td>Team Pst Kola</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <br>
+    <hr>
+
+
+    <br>
+    <aside class="wrap">
+        <div>
+            <h1>Matches Played</h1>
+            <table id="matches-played">
+                <thead>
+                    <td>Week</td>
+                    <td>Date</td>
+                    <td>Team</td>
+                    <td colspan="2">Score</td>
+                    <td>Team</td>
+                    <td>Del</td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>07/01/20</td>
+                        <td>Pst Wale</td>
+                        <td>&nbsp;&nbsp;&nbsp;2&nbsp;</td>
+                        <td>&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td>Pst Kola</td>
+                        <td class="red">X</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>14/01/20</td>
+                        <td>Pst Wale</td>
+                        <td>&nbsp;&nbsp;&nbsp;0&nbsp;</td>
+                        <td>&nbsp;7&nbsp;&nbsp;&nbsp;</td>
+                        <td>Pst Kola</td>
+                        <td class="red">X</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>21/01/20</td>
+                        <td>Pst Wale</td>
+                        <td>&nbsp;&nbsp;&nbsp;1&nbsp;</td>
+                        <td>&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td>Pst Kola</td>
+                        <td class="red">X</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        
+        <div>
+            <h2>Scores:</h2>
+            <div class="scoresheet">
+                <p class="team-pst-wale">Team Pst Wale <span><input type="number" class="text-center form-control-plaintext" min="0"
+                            id="team-pst-wale" value="0"></span></p>
+            
+                <p class="team-pst-kola">Team Pst Kola <span><input type="number" class="text-center form-control-plaintext" min="0"
+                            id="team-pst-kola" value="0"></span></p>
+            </div>
+            <br>
+            <div class="text-center">
+                <button class="col-md-8 btn btn-md btn-outline-primary" id="set-scores">Set Scores</button>
+            </div>
+        </div>
+        
+    </aside>
+
+    </div>
+    <br>
+    <br>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
