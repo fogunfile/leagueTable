@@ -121,36 +121,7 @@ setScores.addEventListener("click", () => {
         ga2.innerHTML = Number(ga2.innerHTML) + Number(pWale.value);
     }
 
- 
-    let
-        serialNumber = document.createElement("td"),
-        date = document.createElement("td"),
-        pstWaleText = document.createElement("td"),
-        pstWaleScore = document.createElement("td"),
-        pstKolaScore = document.createElement("td"),
-        pstKolaText = document.createElement("td");
-        del = document.createElement("td");
-
-    let todaysDate = new Date(Date.now()),
-        dateFormat = `${todaysDate.getDate()}/${(todaysDate.getMonth() + 1).toString().padStart(2, "0")}/${todaysDate.getFullYear().toString().slice(2)}`
-
-    serialNumber.append(sn.length+1);
-    date.setAttribute("data-id", "11234");
-    date.append(dateFormat);
-    pstWaleText.append("Pst Wale");
-    pstWaleScore.append(`\u00A0\u00A0\u00A0${pWale.value}\u00A0`);
-    pstKolaScore.append(`\u00A0${pKola.value}\u00A0\u00A0\u00A0`);
-    pstKolaText.append("Pst Kola");
-    del.setAttribute("class", "red")
-    del.append("X")
-    let insertTableRow = document.createElement("tr")
-    insertTableRow.append(serialNumber, date, pstWaleText, pstWaleScore, pstKolaScore, pstKolaText, del);
-    table.append(insertTableRow);
-    table = document.querySelector("#matches-played");
-
-
-    //  PRIORITIZING TEAM WITH THE GREATER POINTS
-    prioritizeTeams();
+    
     $.ajax({
         //Post Scores
         type: "POST",
@@ -159,8 +130,39 @@ setScores.addEventListener("click", () => {
             team1Score: pWale.value,
             team2Score: pKola.value
         },
-        success: () => console.log("Post request done!")
+        success: (data) => {
+            console.log(data);
+            let
+                serialNumber = document.createElement("td"),
+                date = document.createElement("td"),
+                pstWaleText = document.createElement("td"),
+                pstWaleScore = document.createElement("td"),
+                pstKolaScore = document.createElement("td"),
+                pstKolaText = document.createElement("td");
+            del = document.createElement("td");
+
+            let todaysDate = new Date(Date.now()),
+                dateFormat = `${todaysDate.getDate()}/${(todaysDate.getMonth() + 1).toString().padStart(2, "0")}/${todaysDate.getFullYear().toString().slice(2)}`
+
+            serialNumber.append(sn.length + 1);
+            date.setAttribute("data-id", data._id);
+            date.append(dateFormat);
+            pstWaleText.append("Pst Wale");
+            pstWaleScore.append(`\u00A0\u00A0\u00A0${pWale.value}\u00A0`);
+            pstKolaScore.append(`\u00A0${pKola.value}\u00A0\u00A0\u00A0`);
+            pstKolaText.append("Pst Kola");
+            del.setAttribute("class", "red")
+            del.append("X")
+            let insertTableRow = document.createElement("tr")
+            insertTableRow.append(serialNumber, date, pstWaleText, pstWaleScore, pstKolaScore, pstKolaText, del);
+            table.append(insertTableRow);
+            table = document.querySelector("#matches-played");
+        }
     })
+
+    //  PRIORITIZING TEAM WITH THE GREATER POINTS
+    prioritizeTeams();
+    
 });
 
 
