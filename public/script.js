@@ -35,7 +35,6 @@ const prioritizeTeams = () => {
     }
 
     if (Number(pts1.innerHTML) > Number(pts2.innerHTML)) {
-        console.log("pts1 is greater! in " + pts1.innerHTML + " pts2 is " + pts2.innerHTML);
         allTeams.textContent = "";
         allTeams.append(priorityTeam1);
         allTeams.append(priorityTeam2);
@@ -136,6 +135,7 @@ setScores.addEventListener("click", () => {
         dateFormat = `${todaysDate.getDate()}/${(todaysDate.getMonth() + 1).toString().padStart(2, "0")}/${todaysDate.getFullYear().toString().slice(2)}`
 
     serialNumber.append(sn.length+1);
+    date.setAttribute("data-id", "11234");
     date.append(dateFormat);
     pstWaleText.append("Pst Wale");
     pstWaleScore.append(`\u00A0\u00A0\u00A0${pWale.value}\u00A0`);
@@ -151,17 +151,27 @@ setScores.addEventListener("click", () => {
 
     //  PRIORITIZING TEAM WITH THE GREATER POINTS
     prioritizeTeams();
-
+    $.ajax({
+        //Post Scores
+        type: "POST",
+        url: "/api/match",
+        data: {
+            team1Score: pWale.value,
+            team2Score: pKola.value
+        },
+        success: () => console.log("Post request done!")
+    })
 });
 
 
 
-
+// REMOVE OR DELETE A MATCH
 tableMP.addEventListener("click", (e) => {
     if (e.target.getAttribute("class") == "red") {
-        e.target.parentNode.remove();
-        let team1Score = Number(e.target.parentNode.querySelector("td:nth-of-type(7n+4)").innerText);
-        let team2Score = Number(e.target.parentNode.querySelector("td:nth-of-type(7n+5)").innerText);
+        let thisClickedRow = e.target.parentNode;
+        thisClickedRow.remove();
+        let team1Score = Number(thisClickedRow.querySelector("td:nth-of-type(7n+4)").innerText);
+        let team2Score = Number(thisClickedRow.querySelector("td:nth-of-type(7n+5)").innerText);
 
         let mp1 = team1.querySelector("td:nth-of-type(10n+3)")
          w1 = team1.querySelector("td:nth-of-type(10n+4)"),
@@ -181,7 +191,6 @@ tableMP.addEventListener("click", (e) => {
          gd2 = team2.querySelector("td:nth-of-type(10n+9)"),
          pts2 = team2.querySelector("td:nth-of-type(10n+10)");
         
-        console.log(team1Score, team2Score);
         mp1.innerHTML = Number(mp1.innerHTML) - 1;
         mp2.innerHTML = Number(mp2.innerHTML) - 1;
         if (team1Score > team2Score) {
@@ -228,6 +237,16 @@ tableMP.addEventListener("click", (e) => {
 
         //  PRIORITIZING TEAM WITH THE GREATER POINTS
         prioritizeTeams();
+
+        let thisMatchId = thisClickedRow.querySelector("td:nth-of-type(7n+2)").dataset.id;
+        let deleteUrl = `/api/match/${thisMatchId}`
+        console.log(thisClickedRow.querySelector("td:nth-of-type(7n+2)").dataset.id)
+        $.ajax({
+            method: 'DELETE',
+            url: deleteUrl
+        }, () => {
+            console.log("about to delete");
+        })
 
     }
 });
