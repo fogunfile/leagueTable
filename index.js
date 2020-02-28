@@ -17,13 +17,6 @@ app.get("/", (req, res) => {
 
 
 
-// Bring Data from Database
-// Edit data in Database
-// Add data to Database
-
-const PORT = 3000;
-const IP = "localhost";
-
 
 app.listen(process.env.PORT, process.env.IP, () => {
     console.log(`Server is listening at ${process.env.IP} on port ${process.env.PORT}`);
