@@ -131,9 +131,15 @@ const appendTableRow = (data) => {
     pstWaleText.append("Pst Wale");
     pstWaleScore.append(`\u00A0\u00A0\u00A0${data.team1Score}\u00A0`);
     pstKolaScore.append(`\u00A0${data.team2Score}\u00A0\u00A0\u00A0`);
+    
+    // if ((Date.now() - new Date(data.date)) < 86400000 ) {
+    if (sn.length > 7 && (Date.now() - new Date(data.date)) < 86400000) {
+        console.log("hey");
+        del.setAttribute("class", "red")
+        del.append("X")
+    }
+    
     pstKolaText.append("Pst Kola");
-    del.setAttribute("class", "red")
-    del.append("X")
     let insertTableRow = document.createElement("tr")
     insertTableRow.append(serialNumber, date, pstWaleText, pstWaleScore, pstKolaScore, pstKolaText, del);
     tableMP.append(insertTableRow);

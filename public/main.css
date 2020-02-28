@@ -1,6 +1,4 @@
-/* .wrap {
-    /* width:
-} */
+
 
 .jumbotron {
     color: #007BFF;
@@ -74,11 +72,14 @@ tbody > tr:hover {
 
 tr {
     border: 1px solid white;
-    /* color: #007BFF; */
 }
 
 ul {
     list-style-type: none; 
+}
+
+div.scores > h2 {
+    color: #007BFF;
 }
 
 ul li:before {
@@ -107,7 +108,41 @@ input[type="number"] {
     font-weight: 600;
 }
 
+table {
+    width: 100%;
+}
+
 main {
-    width: 80%;
+    width: 100%;
     margin: auto;
+}
+
+
+/* For Small Screens */
+@media (max-width: 760px) {
+
+    thead, td {
+        padding: 2px 5px;
+        border: 1px solid white;
+    }
+
+    .wrap {
+        display: block;
+    }
+
+    .wrap > div:first-child {
+        width: 100%;
+    }
+
+    div.scores {
+        width: 20px;
+        padding: 0;
+        margin: auto;
+        /* height: 500px; */
+        /* position: fixed;
+        top: 0;
+        left: 0;
+        opacity: 0.8;
+        background-color: white; */
+    }
 }

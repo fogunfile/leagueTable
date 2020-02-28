@@ -1,3 +1,4 @@
+require("dotenv").config();
 const   express     =   require("express")
     ,   app         =   express()
     ,   matches     =   require("./routes")
@@ -24,6 +25,6 @@ const PORT = 3000;
 const IP = "localhost";
 
 
-app.listen(PORT, IP, () => {
-    console.log("Hey you!");
+app.listen(process.env.PORT, process.env.IP, () => {
+    console.log(`Server is listening at ${process.env.IP} on port ${process.env.PORT}`);
 })

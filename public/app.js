@@ -53,7 +53,6 @@ tableMP.addEventListener("click", (e) => {
         //  DELETE MATCH RECORD FROM DATABASE
         let thisMatchId = thisClickedRow.querySelector("td:nth-of-type(7n+2)").dataset.id;
         let deleteUrl = `/api/match/${thisMatchId}`
-        console.log(thisClickedRow.querySelector("td:nth-of-type(7n+2)").dataset.id)
         $.ajax({
             method: 'DELETE',
             url: deleteUrl
