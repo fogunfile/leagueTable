@@ -1,0 +1,109 @@
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <title>Football League Table</title>
+    </head>
+    <body>
+        <header>
+            <div class="jumbotron">
+                <h1>Football League Table</h1>
+            </div>
+        </header>
+        <div class="container">
+        <main>
+            <br>
+            <table class="standings">
+                <thead>
+                    <td>S/N</td>
+                    <td>Team</td>
+                    <td>MP</td>
+                    <td>W</td>
+                    <td>D</td>
+                    <td>L</td>
+                    <td>GF</td>
+                    <td>GA</td>
+                    <td>GD</td>
+                    <td>Pts</td>
+                </thead>
+                <tbody>
+                    <tr id="t1">
+                        <td>1</td>
+                        <td>Team 1</td>
+                        <td id="mp1">0</td>
+                        <td id="w1">0</td>
+                        <td id="d1">0</td>
+                        <td id="l1">0</td>
+                        <td id="gf1">0</td>
+                        <td id="ga1">0</td>
+                        <td id="gd1">0</td>
+                        <td id="pts1">0</td>
+                    </tr>
+                    <tr id="t2">
+                        <td>2</td>
+                        <td>Team 2</td>
+                        <td id="mp2">0</td>
+                        <td id="w2">0</td>
+                        <td id="d2">0</td>
+                        <td id="l2">0</td>
+                        <td id="gf2">0</td>
+                        <td id="ga2">0</td>
+                        <td id="gd2">0</td>
+                        <td id="pts2">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        <br>
+        <hr>
+    
+    
+        <br>
+        <aside class="wrap">
+            <div>
+                <h1>Matches Played</h1>
+                <table id="matches-played">
+                    <thead>
+                        <td>Week</td>
+                        <td>Date</td>
+                        <td>Team</td>
+                        <td colspan="2">Score</td>
+                        <td>Team</td>
+                        <td>Del</td>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            
+            <br>
+            <div class="scores" >
+                <h2 class="text-center">Scores:</h2>
+                <div class="scoresheet">
+                    <p class="team--wale text-center">Team 1 <span><input type="number" class="text-center form-control-plaintext" min="0"
+                                id="team--wale" value="0"></span></p>
+                
+                    <p class="team--kola text-center">Team 2 <span><input type="number" class="text-center form-control-plaintext" min="0"
+                                id="team--kola" value="0"></span></p>
+                </div>
+                <br>
+                <div class="text-center">
+                    <button class="col-md-8 btn btn-md btn-outline-primary" id="set-scores">Set Scores</button>
+                </div>
+            </div>
+            
+        </aside>
+    
+        </div>
+        <br>
+        <br>
+        
+        <script src="script.js"></script>
+    </body>
+    </html>
