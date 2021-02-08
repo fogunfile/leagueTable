@@ -33,5 +33,17 @@ setScore.addEventListener("click", (e) =>{
     let newScore2 = Number(team2.value);
     console.log(newScore2);
 
+    let matchPlayed = Number(played.textContent);
+    console.log(matchPlayed); 
+
+    played.textContent = matchPlayed + 1;
+    console.log(played.textContent);
+    
+    let matchPlayed2 = Number(played2.textContent);
+    console.log(matchPlayed2);
+    
+    played2.textContent = matchPlayed2 + 1;
+    console.log(played2.textContent);
     
 })
+
