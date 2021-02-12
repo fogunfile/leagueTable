@@ -1,22 +1,22 @@
-
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <title>Football League Table</title>
-    </head>
-    <body>
-        <header>
-            <div class="jumbotron">
-                <h1>Football League Table</h1>
-            </div>
-        </header>
-        <div class="container">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Football League Table</title>
+</head>
+
+<body>
+    <header>
+        <div class="jumbotron">
+            <h1>Football League Table</h1>
+        </div>
+    </header>
+    <div class="container">
         <main>
             <br>
             <table class="standings">
@@ -35,7 +35,7 @@
                 <tbody>
                     <tr id="t1">
                         <td>1</td>
-                        <td>Bariga Rangers</td>
+                        <td id="tn1">Home Team</td>
                         <td id="mp1">0</td>
                         <td id="w1">0</td>
                         <td id="d1">0</td>
@@ -47,7 +47,7 @@
                     </tr>
                     <tr id="t2">
                         <td>2</td>
-                        <td>Akoka FC</td>
+                        <td id="tn2">Away Team</td>
                         <td id="mp2">0</td>
                         <td id="w2">0</td>
                         <td id="d2">0</td>
@@ -62,17 +62,17 @@
         </main>
         <br>
         <hr>
-    
-    
+
+
         <br>
         <aside class="wrap">
             <div>
                 <h1>Matches Played</h1>
                 <table id="matches-played">
                     <thead>
-                        <td >Week</td>
-                        <td >Date</td>
-                        <td >Team</td>
+                        <td>Week</td>
+                        <td>Date</td>
+                        <td>Team</td>
                         <td colspan="2">Score</td>
                         <td>Team</td>
                         <td>Del</td>
@@ -91,29 +91,46 @@
                 </table>
             </div>
 
-            
+
             <br>
-            <div class="scores" >
+            <div class="scores">
                 <h2 class="text-center">Scores:</h2>
                 <div class="scoresheet">
-                    <p class="team--wale text-center">Team 1 <span><input type="number" class="text-center form-control-plaintext" min="0"
-                                id="team--wale" value="0"></span></p>
-                
-                    <p class="team--kola text-center">Team 2 <span><input type="number" class="text-center form-control-plaintext" min="0"
-                                id="team--kola" value="0"></span></p>
+                    <p class="team--wale text-center">
+                        <span>
+                             <input type="text" class="text-center form-control-plaintext" id="name1" placeholder="Home Team">
+                        </span>
+                        <span>
+                         <input type="number" class="text-center form-control-plaintext" min="0"
+                                id="team--wale" value="0">
+                       </span>
+                    </p>
+
+
+
+                    <p class="team--kola text-center">
+                        <span>
+                            <input type="text" class="text-center form-control-plaintext" id="name2" placeholder="Away Team">
+                        </span>
+                        <span>
+                        <input type="number" class="text-center form-control-plaintext " min="0" id="team--kola" value="0">
+                        </span>
+                    </p>
                 </div>
                 <br>
-                <div class="text-center">
-                    <button class="col-md-8 btn btn-md btn-outline-primary" id="set-scores">Set Scores</button>
+                <div class="text-center ">
+                    <button class="col-md-8 btn btn-md btn-outline-primary " id="set-scores">Set Scores</button>
                 </div>
             </div>
-            
+
         </aside>
-    
-        </div>
-        <br>
-        <br>
-        
-        <script src="script.js"></script>
-    </body>
-    </html>
+
+    </div>
+    <br>
+    <br>
+
+    <script src="script.js "></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js " integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin=" anonymous "></script>
+</body>
+
+</html>

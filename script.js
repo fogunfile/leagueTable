@@ -25,29 +25,32 @@ const score = document.querySelector(".scores");
 const team1 = document.querySelector("#team--wale");
 const team2 = document.querySelector("#team--kola");
 
-const       wk      = document.querySelector("#wk")
-    ,       dt      = document.querySelector("#dt")
-    ,       tm1     = document.querySelector("#tm1")
-    ,       tm2     = document.querySelector("#tm2")
-    ,       sc1     = document.querySelector("#sc1")
-    ,       sc2     = document.querySelector("#sc2")
-    ,       del     = document.querySelector("#del")
-    ;
+const wk = document.querySelector("#wk"),
+    dt = document.querySelector("#dt"),
+    tm1 = document.querySelector("#tm1"),
+    tm2 = document.querySelector("#tm2"),
+    sc1 = document.querySelector("#sc1"),
+    sc2 = document.querySelector("#sc2"),
+    del = document.querySelector("#del");
+const tn1 = document.querySelector("#tn1");
+const tn2 = document.querySelector("#tn2");
+const name1 = document.querySelector("#name1");
+const name2 = document.querySelector("#name2");
 
 
 
 const setScore = document.querySelector("#set-scores");
 
-setScore.addEventListener("click", (e) =>{
+setScore.addEventListener("click", (e) => {
     let newScore1 = Number(team1.value);
     let newScore2 = Number(team2.value);
 
     let matchPlayed = Number(played.textContent);
 
     played.textContent = matchPlayed + 1;
-    
+
     let matchPlayed2 = Number(played2.textContent);
-    
+
     played2.textContent = matchPlayed2 + 1;
     let newWin = Number(win.textContent);
 
@@ -55,41 +58,40 @@ setScore.addEventListener("click", (e) =>{
     // weekly.textContent = weekcount(Number(length + 1));
     // console.log(weekly.textContent);
 
-    
-    
 
-    if(newScore1 > newScore2 ){
-        let newWin =Number(win.textContent);
-        win.textContent =newWin +1;
+
+
+    if (newScore1 > newScore2) {
+        let newWin = Number(win.textContent);
+        win.textContent = newWin + 1;
 
         let newloss2 = Number(lose2.textContent);
-        lose2.textContent =newloss2 +1;
-    }
-    else if(newScore1 == newScore2){
-        let draw1 =Number(draw.textContent);
-        draw.textContent =draw1 +1;
-        
+        lose2.textContent = newloss2 + 1;
+    } else if (newScore1 == newScore2) {
+        let draw1 = Number(draw.textContent);
+        draw.textContent = draw1 + 1;
+
         let draw11 = Number(draw2.textContent);
-        draw2.textContent =draw11 +1;
+        draw2.textContent = draw11 + 1;
     }
-    if(newScore1 < newScore2){
+    if (newScore1 < newScore2) {
         let newWin3 = Number(win2.textContent);
-        win2.textContent =newWin3+1;
-        
+        win2.textContent = newWin3 + 1;
+
         let newLoss = Number(lose.textContent);
-        lose.textContent =newLoss +1;
+        lose.textContent = newLoss + 1;
     }
     // goals for
     let goalfor1 = Number(goals.textContent);
     goals.textContent = Number(newScore1) + Number(goals.textContent);
 
     let goalfor2 = Number(goals2.textContent);
-    goals2.textContent= Number(newScore2) +  Number(goals2.textContent);
+    goals2.textContent = Number(newScore2) + Number(goals2.textContent);
     // goal against
     let goalA = Number(against.textContent);
     against.textContent = Number(newScore2) + Number(against.textContent);
-     let goalB = Number(against2.textContent);
-     against2.textContent = Number(newScore1) + Number(against2.textContent);
+    let goalB = Number(against2.textContent);
+    against2.textContent = Number(newScore1) + Number(against2.textContent);
     //  goals difference
     let goalDiff = Number(differ.textContent);
     differ.textContent = Number(goals.textContent) - Number(against.textContent);
@@ -98,9 +100,9 @@ setScore.addEventListener("click", (e) =>{
     differ2.textContent = Number(goals2.textContent) - Number(against2.textContent);
     // points
     let victory = Number(point.textContent);
-    point.textContent = (Number(win.textContent) *3) + (Number(draw.textContent));
+    point.textContent = (Number(win.textContent) * 3) + (Number(draw.textContent));
     let victory2 = Number(point2.textContent);
-    point2.textContent =(Number(win2.textContent)*3) +(Number(draw2.textContent));
+    point2.textContent = (Number(win2.textContent) * 3) + (Number(draw2.textContent));
 
     let date = new Date();
     let year = date.getFullYear();
@@ -114,19 +116,20 @@ setScore.addEventListener("click", (e) =>{
     // tm2.textContent = "Team 2";
     // sc1.textContent = newScore1;
     // sc2.textContent = newScore2;
-    let tr = document.createElement("tr");
-    
-    for(let i=0; i<7; i++){
-        let td = document.createElement("td");
-        td.textContent = `Believe ${i}`;
-        tr.append(td);
-    }
+    // let tr = document.createElement("tr");
 
-    console.log(tr);
-    tbody.append(tr);
+    // for(let i=0; i<7; i++){
+    //     let td = document.createElement("td");
+    //     td.textContent = `Believe ${i}`;
+    //     tr.append(td);
+    // }
+
+    let newName = tn1.textContent;
+    tn1.textContent = name1.value;
+    console.log(newName);
+
+    let newName2 = tn2.textContent;
+    tn2.textContent = name2.value;
+    console.log(newName2);
 
 })
-
-
-
-    
