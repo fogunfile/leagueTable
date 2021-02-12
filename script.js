@@ -132,4 +132,18 @@ setScore.addEventListener("click", (e) => {
     tn2.textContent = name2.value;
     console.log(newName2);
 
+
+
+
+    $(tbody).append(`<tr>
+                    <td > 1 </td>
+                     <td> ${dateString} </td>
+                      <td> ${newName} </td> 
+                      <td> ${newScore1} </td> 
+                      <td> ${newScore2} </td>
+                       <td> ${newName2} </td>
+                        <td> x </td>
+                    < /tr>`);
+
+
 })
