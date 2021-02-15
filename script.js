@@ -142,8 +142,15 @@ setScore.addEventListener("click", (e) => {
                       <td> ${newScore1} </td> 
                       <td> ${newScore2} </td>
                        <td> ${newName2} </td>
-                        <td> x </td>
+                        <td><span>x</span></td>
                     < /tr>`);
 
+
+});
+
+
+del.addEventListener('click', (e) => {
+    console.log(e.target.parentNode);
+    e.target.parentNode.remove();
 
 })
