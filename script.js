@@ -25,8 +25,7 @@ const score = document.querySelector(".scores");
 const team1 = document.querySelector("#team--wale");
 const team2 = document.querySelector("#team--kola");
 
-const wk = document.querySelector("#wk"),
-    dt = document.querySelector("#dt"),
+const dt = document.querySelector("#dt"),
     tm1 = document.querySelector("#tm1"),
     tm2 = document.querySelector("#tm2"),
     sc1 = document.querySelector("#sc1"),
@@ -36,6 +35,8 @@ const tn1 = document.querySelector("#tn1");
 const tn2 = document.querySelector("#tn2");
 const name1 = document.querySelector("#name1");
 const name2 = document.querySelector("#name2");
+
+let counter = 1;
 
 
 
@@ -134,23 +135,34 @@ setScore.addEventListener("click", (e) => {
 
 
 
-
     $(tbody).append(`<tr>
-                    <td > 1 </td>
+                    <td class="sn">${counter + 1}</td>
                      <td> ${dateString} </td>
                       <td> ${newName} </td> 
                       <td> ${newScore1} </td> 
                       <td> ${newScore2} </td>
                        <td> ${newName2} </td>
-                        <td><span>x</span></td>
+                        <td class="red" id="del">X</td>
                     < /tr>`);
 
-
+    counter++;
+    changeSerial();
 });
 
 
-del.addEventListener('click', (e) => {
-    console.log(e.target.parentNode);
-    e.target.parentNode.remove();
+// DELETING A ROW
+tbody.addEventListener('click', (e) => {
+    console.log(e.target.getAttribute("id"));
+    if(e.target.getAttribute("id") == "del"){
+        e.target.parentNode.remove()
+    }
+    changeSerial();
+});
 
-})
+// CHANGING THE SERIAL NUMBER
+const changeSerial = () => {
+    let sn = document.querySelectorAll(".sn");
+    sn.forEach((item, i) => {
+        item.textContent = i + 1;
+    })
+}

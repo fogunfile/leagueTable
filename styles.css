@@ -117,6 +117,14 @@ main {
     margin: auto;
 }
 
+#del:hover {
+    cursor: pointer;
+}
+
+.red {
+    color: #b42b2b;
+}
+
 
 /* For Small Screens */
 @media (max-width: 760px) {
