@@ -1,7 +1,6 @@
 const table = document.querySelector("#t1");
 const matchPlayedTable = document.querySelector("#matches-played");
 const tbody = matchPlayedTable.querySelector("tbody");
-console.log(tbody);
 
 const point = document.querySelector("#pts1");
 const goals = document.querySelector("#gf1");
@@ -125,23 +124,21 @@ setScore.addEventListener("click", (e) => {
     //     tr.append(td);
     // }
 
-    let newName = tn1.textContent;
-    tn1.textContent = name1.value;
-    console.log(newName);
+    let team1Name = name1.value;
+    tn1.textContent = team1Name;
 
-    let newName2 = tn2.textContent;
-    tn2.textContent = name2.value;
-    console.log(newName2);
+    let team2Name = name2.value;
+    tn2.textContent = team2Name;
 
 
 
     $(tbody).append(`<tr>
                     <td class="sn">${counter + 1}</td>
                      <td> ${dateString} </td>
-                      <td> ${newName} </td> 
+                      <td> ${team1Name} </td> 
                       <td> ${newScore1} </td> 
                       <td> ${newScore2} </td>
-                       <td> ${newName2} </td>
+                       <td> ${team2Name} </td>
                         <td class="red" id="del">X</td>
                     < /tr>`);
 
