@@ -27,60 +27,79 @@ const changeSerial = (element) => {
     })
 }
 
-// POSITION TEAMS BY POINTS or GOAL DIFFERENCE
-const positioner = () => {
-    let teamRowsList = tableStandings.querySelectorAll("tbody tr");
-    let abc = Array.from(teamRowsList).sort((a, b) => {
-        let thisA = Number(a.querySelector("td:last-child").textContent);
-        let thisB = Number(b.querySelector("td:last-child").textContent);
-        if(thisB-thisA == 0){
-            thisA = Number(a.querySelector("td:nth-child(9)").textContent);
-            thisB = Number(b.querySelector("td:nth-child(9)").textContent);
-        }
-        return thisB-thisA;
-    })
-    return abc;
-}
-
-const setScoreFunc = (team1Id, team2Id, score1, score2) => {
+// CHANGE STATS ON TABLE
+const changeMatchStats = (team1Id, team2Id, score1, score2, operation, addToTable) => {
     let team1Row = document.querySelector(`#${team1Id}`);
     let team2Row = document.querySelector(`#${team2Id}`);
 
-    // MATCH PLAYED
-    modifyTextContent(getElements(team1Row, 3), "add", 1);
-    modifyTextContent(getElements(team2Row, 3), "add", 1);
-
-    if(score1 > score2){
-        modifyTextContent(getElements(team1Row, 4), "add", 1);
-        modifyTextContent(getElements(team2Row, 6), "add", 1);
-        modifyTextContent(getElements(team1Row, 10), "add", 3);
-    } else if (score1 < score2){
-        modifyTextContent(getElements(team2Row, 4), "add", 1);
-        modifyTextContent(getElements(team1Row, 6), "add", 1);
-        modifyTextContent(getElements(team2Row, 10), "add", 3);
+    modifyTextContent(getElements(team1Row, 3), operation, 1);
+    modifyTextContent(getElements(team2Row, 3), operation, 1);
+    
+    if(score1 !== score2){
+        let winner = team1Row;
+        let loser = team2Row;
+        if(score1 < score2){
+            winner = team2Row;
+            loser = team1Row;
+        }
+        modifyTextContent(getElements(winner, 4), operation, 1);
+        modifyTextContent(getElements(loser, 6), operation, 1);
+        modifyTextContent(getElements(winner, 10), operation, 3);
     } else {
-        modifyTextContent(getElements(team1Row, 5), "add", 1)
-        modifyTextContent(getElements(team2Row, 5), "add", 1)
-        modifyTextContent(getElements(team1Row, 10), "add", 1)
-        modifyTextContent(getElements(team2Row, 10), "add", 1)
+        modifyTextContent(getElements(team1Row, 5), operation, 1)
+    modifyTextContent(getElements(team2Row, 5), operation, 1)
+    modifyTextContent(getElements(team1Row, 10), operation, 1)
+    modifyTextContent(getElements(team2Row, 10), operation, 1)
     }
 
     // Goals For
-    let gf1 = Number(getElements(team1Row, 7).textContent) + score1;
-    let gf2 = Number(getElements(team2Row, 7).textContent) + score2;
+    let gf1, gf2 = 0;
+    if (addToTable) {
+        gf1 = Number(getElements(team1Row, 7).textContent) + score1;
+        gf2 = Number(getElements(team2Row, 7).textContent) + score2;
+    } else {
+        gf1 = Number(getElements(team1Row, 7).textContent) - score1;
+        gf2 = Number(getElements(team2Row, 7).textContent) - score2;
+    }
     getElements(team1Row, 7).textContent = gf1;
     getElements(team2Row, 7).textContent = gf2;
 
     // Goals Against
-    let ga1 = Number(getElements(team1Row, 8).textContent) + score2;
-    let ga2 = Number(getElements(team2Row, 8).textContent) + score1;
+    let ga1, ga2 = 0;
+    if (addToTable){
+        ga1 = Number(getElements(team1Row, 8).textContent) + score2;
+        ga2 = Number(getElements(team2Row, 8).textContent) + score1;
+    } else {
+        ga1 = Number(getElements(team1Row, 8).textContent) - score2;
+        ga2 = Number(getElements(team2Row, 8).textContent) - score1;
+    }
     getElements(team1Row, 8).textContent = ga1;
     getElements(team2Row, 8).textContent = ga2;
 
     // Goal Difference
     getElements(team1Row, 9).textContent = gf1-ga1;
     getElements(team2Row, 9).textContent = gf2-ga2;
-};
+}
+
+// POSITION TEAMS BY POINTS or GOAL DIFFERENCE
+const positioner = () => {
+    let teamRowsList = tableStandings.querySelectorAll("tbody tr");
+    let sortedTeams = Array.from(teamRowsList).sort((a, b) => {
+        let pointsTeam1 = Number(a.querySelector("td:last-child").textContent);
+        let pointsTeam2 = Number(b.querySelector("td:last-child").textContent);
+        if(pointsTeam2-pointsTeam1 == 0){
+            //Work with Goal difference
+            pointsTeam1 = Number(a.querySelector("td:nth-child(9)").textContent);
+            pointsTeam2 = Number(b.querySelector("td:nth-child(9)").textContent);
+        }
+        return pointsTeam2-pointsTeam1;
+    })
+    return sortedTeams;
+}
+
+// const setScoreFunc = (team1Id, team2Id, score1, score2) => {
+//     changeMatchStats(team1Id, team2Id, score1, score2, "add", true);
+// };
 
 const setScore = document.querySelector("#set-scores");
 
@@ -88,7 +107,7 @@ const setScore = document.querySelector("#set-scores");
 setScore.addEventListener("click", (e) => {
     let name1 = document.querySelector("#name1");
     let name2 = document.querySelector("#name2");
-    setScoreFunc(name1.value, name2.value, Number(team1Score.value), Number(team2Score.value));
+    changeMatchStats(name1.value, name2.value, Number(team1Score.value), Number(team2Score.value), "add", true);
 
 
     let date = new Date();
@@ -129,47 +148,10 @@ tbody.addEventListener('click', (e) => {
         let score1 = Number(removed.querySelector("td:nth-child(4)").textContent);
         let score2 = Number(removed.querySelector("td:nth-child(5)").textContent);
 
-        let team1Row = document.querySelector(`#${team1Id}`);
-        let team2Row = document.querySelector(`#${team2Id}`);
-
-        modifyTextContent(getElements(team1Row, 3), "subtract", 1);
-        modifyTextContent(getElements(team2Row, 3), "subtract", 1);
-        
-        if(score1 > score2){
-            modifyTextContent(getElements(team1Row, 4), "subtract", 1);
-            modifyTextContent(getElements(team2Row, 6), "subtract", 1);
-            modifyTextContent(getElements(team1Row, 10), "subtract", 3);
-        } else if (score1 < score2){
-            modifyTextContent(getElements(team2Row, 4), "subtract", 1);
-            modifyTextContent(getElements(team1Row, 6), "subtract", 1);
-            modifyTextContent(getElements(team2Row, 10), "subtract", 3);
-        } else {
-            modifyTextContent(getElements(team1Row, 5), "subtract", 1)
-        modifyTextContent(getElements(team2Row, 5), "subtract", 1)
-        modifyTextContent(getElements(team1Row, 10), "subtract", 1)
-        modifyTextContent(getElements(team2Row, 10), "subtract", 1)
-        }
-
-        // Goals For
-        let gf1 = Number(getElements(team1Row, 7).textContent) - score1;
-        let gf2 = Number(getElements(team2Row, 7).textContent) - score2;
-        getElements(team1Row, 7).textContent = gf1;
-        getElements(team2Row, 7).textContent = gf2;
-
-        // Goals Against
-        let ga1 = Number(getElements(team1Row, 8).textContent) - score2;
-        let ga2 = Number(getElements(team2Row, 8).textContent) - score1;
-        getElements(team1Row, 8).textContent = ga1;
-        getElements(team2Row, 8).textContent = ga2;
-
-        // Goal Difference
-        getElements(team1Row, 9).textContent = gf1-ga1;
-        getElements(team2Row, 9).textContent = gf2-ga2;
+        changeMatchStats(team1Id, team2Id, score1, score2, "subtract", false)
     }
     changeSerial("sn");
     changeSerial("mn");
 });
-
-
 
 
