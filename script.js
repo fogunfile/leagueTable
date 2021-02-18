@@ -5,6 +5,8 @@ const tbody = matchPlayedTable.querySelector("tbody");
 
 const team1Score = document.querySelector("#team--wale");
 const team2Score = document.querySelector("#team--kola");
+const name1 = document.querySelector("#name1");
+const name2 = document.querySelector("#name2");
 
 let counter = 1;
 
@@ -105,8 +107,7 @@ const setScore = document.querySelector("#set-scores");
 
 
 setScore.addEventListener("click", (e) => {
-    let name1 = document.querySelector("#name1");
-    let name2 = document.querySelector("#name2");
+
     changeMatchStats(name1.value, name2.value, Number(team1Score.value), Number(team2Score.value), "add", true);
 
 
@@ -155,3 +156,12 @@ tbody.addEventListener('click', (e) => {
 });
 
 
+name1.addEventListener("change", (e)=> {
+    let selected = e.target;
+    let selected2 = name2.options[name2.options.selectedIndex];
+    if (selected.value == selected2.value){
+        let index = name2.options.length - 1;
+        name2.options.selectedIndex == index ? name2.options.selectedIndex = 0 : name2.options.selectedIndex++;
+    }
+    Array.from(name2.options).filter((item) => item.value == selected ? item.disabled = true : item.disabled = false );
+});
