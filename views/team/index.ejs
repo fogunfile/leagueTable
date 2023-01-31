@@ -1,0 +1,18 @@
+<%- include("../partials/header") -%>
+    <header class="jumbotron">
+        <h1>All Teams</h1>
+        <a href="/team/new" class="btn btn-primary">Create a New Team</a>
+    </header>
+    <div class="container">
+        <ol>
+            <% teams.forEach((team)=> { %>
+                <h2>
+                    <li>
+                        <%= team.name %>
+                    </li>
+                </h2>
+            <% }) %>
+        </ol>
+    </div>
+
+<%- include("../partials/footer") -%>

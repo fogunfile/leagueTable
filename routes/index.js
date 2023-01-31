@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
-// import router from express
+const Team = require("../models/team");
 
 // const router = express.Router()
 
-router.get("/", (req, res)=> {
-    res.render("index");
+router.get("/", async (req, res)=> {
+    const teams = await Team.find().sort({points: -1}).sort({goalDifference: -1}).sort({goalsFor: -1});
+    res.render("index", {teams});
 })
 
 module.exports = router;

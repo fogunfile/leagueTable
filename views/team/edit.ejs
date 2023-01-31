@@ -1,0 +1,19 @@
+<%- include("../partials/header") -%>
+    <header class="jumbotron">
+        <h1>Edit <%= team.name %> Team</h1>
+    </header>
+    <div class="container">
+        <form method="POST" action="/team/<%= team._id %>/edit?_method=PUT">
+            <div class="form-group">
+                <label>Name of Team:</label>
+                <input name="name" type="text" value="<%= team.name %>" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Description:</label>
+                <input name="description" type="text" value="<%= team.info %>" class="form-control" />
+            </div>
+            <input type="submit" />
+        </form>
+    </div>
+
+<%- include("../partials/footer") -%>

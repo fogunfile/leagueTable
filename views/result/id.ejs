@@ -1,0 +1,16 @@
+<%- include("../partials/header") -%>
+    <header class="jumbotron">
+        <h1>Result</h1>
+        <a href="/result/<%= result._id %>/edit">Result</a>
+    </header>
+    <div class="container text-center">
+        <div class="m-3 text-center">
+            <h3><%= result.fixture.homeTeam.name %></h3> <h5 class="my-2 mx-5"><%= result.homeTeamScore %> - <%= result.awayTeamScore %></h5> <h3><%= result.fixture.awayTeam.name %></h3>
+            (<%= moment(result.fixture.date).format("DD-MM-YYYY") %>)
+        </div>
+        <div class="m-3">
+            <p><%= result.info %></p>
+        </div>
+    </div>
+
+<%- include("../partials/footer") -%>

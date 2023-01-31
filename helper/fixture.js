@@ -1,50 +1,59 @@
 const Team = require("../models/team")
 const Fixture = require("../models/fixture")
+const Result = require("../models/result")
+const RemoveMatch = require("../utils/removeMatch")
 
 module.exports = {
-    readFixture: async (req, res) => {
-        const chosenFixture = await Fixture.findById({_id: req.params.id});
-        res.send(chosenFixture);
+    readFixtures: async (req, res) => {
+        const fixtures = await Fixture.find().sort({date: -1}).populate("homeTeam awayTeam");
+        res.render("fixture/", {fixtures});
     },
-    toCreateFixture: (req, res) => {
-        res.send(`
-            <!doctype html>
-            <html>
-                <head>
-                    <title>Create Fixture</title>
-                </head>
-                <body>
-                    <input type="text" name="homeTeam" />
-                    <input type="text" name="awayTeam" />
-                </body>
-            </html>
-        `)
+    readOneFixture: async (req, res) => {
+        const fixture = await Fixture.findById({_id: req.params.id}).populate("homeTeam awayTeam");
+        res.render("fixture/id", {fixture});
+    },
+    toCreateFixture: async (req, res) => {
+        const teams = await Team.find().sort({name: 1});
+        res.render("fixture/new", {teams});
     },
     createFixture: async (req, res)=> {
         try {
-           
+           console.log(req.body)
+           const newFixture = await Fixture.create(req.body);
+           res.redirect(`fixture/${newFixture._id}`);
         } catch (e) {
             console.log(e)
         }
     },
-    toUpdateFixture: () => {
-        try {
-            
-        } catch (e) {
-            console.log(e);
-        }
+    toUpdateFixture: async (req, res) => {
+        const teams = await Team.find().sort({name: 1});
+        const fixture = await Fixture.findById({_id: req.params.id}).populate("homeTeam awayTeam");
+        res.render("fixture/edit", {fixture, teams});
     },
     updateFixture: async (req, res) => {
         try {
-            const teamA = await Team.findOne({name: "Team A"});
-            const teamB = await Team.findOne({name: "Team B"});
-            const thisMatch = new RemoveMatch(3, teamA._id, 2, teamB._id);
-            
-            const executedMatch = await thisMatch.executeMatch()
-            res.send(executedMatch);
+            const fixtureId = req.params.id
+            console.log(req.body)
+            await Fixture.findByIdAndUpdate({_id: fixtureId}, req.body, {new: true});
+            res.redirect(`/fixture/${fixtureId}`)
         } catch (e) {
             console.log(e);
         }
     },
-    deleteFixture: () => {},
+    deleteFixture: async (req, res) => {
+        const fixtureId = req.params.id;
+        console.log("About to Delete")
+        const foundResult = await Result.findOne({fixture: fixtureId}).populate("fixture"); // delete corresponding result
+        if(foundResult){
+            const thisMatch = new RemoveMatch(foundResult.homeTeamScore, foundResult.fixture.homeTeam, foundResult.awayTeamScore, foundResult.fixture.awayTeam);
+            const executedMatch = await thisMatch.executeMatch()
+            console.log(executedMatch)
+            await Result.findByIdAndDelete({_id: foundResult._id});
+            await Fixture.findByIdAndDelete({_id: fixtureId});
+            res.redirect("/result")
+        } else {
+            await Fixture.findByIdAndDelete({_id: fixtureId});
+            res.redirect("/fixture")
+        }
+    },
 }

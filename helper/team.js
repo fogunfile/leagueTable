@@ -1,42 +1,39 @@
 const Team = require("../models/team")
 
 module.exports = {
-    readTeam: async (req, res) => {
-        const chosenTeam = await Team.findById({_id: req.params.id});
-        res.send(chosenTeam)
+    readOneTeam: async (req, res) => {
+        const team = await Team.findById({_id: req.params.id});
+        res.render("team/id", {team})
+    },
+    readTeams: async (req, res) => {
+        const teams = await Team.find().sort({name: 1});
+        res.render("team/", {teams});
     },
     toCreateTeam: async (req, res) => {
-       res.send(`
-        <!doctype html>
-        <html>
-            <head>
-                <title>Create Team</title>
-            </head>
-            <body>
-                <input name="name" type="text" />
-                <input name="description" type="text" />
-            </body>
-        </html>
-       `)
+       res.render("team/new")
     },
     createTeam: async (req, res)=> {
         try {
+            console.log(req.body);
             const newTeam = await Team.create(req.body);
-            res.send(newTeam);
+            res.redirect("/");
         } catch (e) {
             console.log(e)
         }
     },
     toUpdateTeam: async (req, res) => {
-        const chosenTeam = await Team.findById({_id: req.params.id});
-        res.send(chosenTeam);
+        const team = await Team.findById({_id: req.params.id});
+        res.render("team/edit", {team});
     },
     updateTeam: async (req, res) => {
         const updatedTeam = await Team.findByIdAndUpdate({_id: req.params.id}, req.body, {new: true});
-        res.send(updatedTeam);
+        res.redirect("team/id");
     },
     deleteTeam: async (req, res) => {
-        await Team.findByIdAndDelete({_id: req.params.id});
-        res.send("deleted");
+        const team = await Team.findById({_id: req.params.id});
+        if(team.matchPlayed == 0){
+            await Team.findByIdAndDelete({_id: req.params.id});
+        }
+        res.redirect("/team");
     },
 }

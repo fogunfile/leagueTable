@@ -8,10 +8,11 @@ const helper = require("../helper/team")
 
 // const router = express.Router()
 
+router.get("/", helper.readTeams)
+router.post("/", helper.createTeam)
 router.get("/new", helper.toCreateTeam)
 router.get("/:id/edit", helper.toUpdateTeam)
-router.get("/:id", helper.readTeam)
-router.post("/:id", helper.createTeam)
-router.put("/:id", helper.readTeam)
+router.get("/:id", helper.readOneTeam)
+router.put("/:id", helper.updateTeam)
 
 module.exports = router;

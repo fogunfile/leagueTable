@@ -1,0 +1,31 @@
+<%- include("../partials/header") -%>
+    <header class="jumbotron">
+        <h1>All Fixtures</h1>
+        <a href="/fixture/new" class="btn btn-primary">Create a New Fixture</a>
+    </header>
+    <div class="container">
+        <ol>
+            <% fixtures.forEach((fixture)=> { %>
+                <form action="/fixture/<%= fixture._id %>?_method=DELETE" method="POST">
+                    <li class="h4">
+                        <span class="h4">
+                            <%= fixture.homeTeam.name %>
+                        </span>
+                        <span class="h6 mx-3">
+                            VS
+                        </span>
+                        <span class="h4">
+                            <%= fixture.awayTeam.name %>
+                        </span>
+                        <div class="h4">
+                            (<%= moment(fixture.date).format("DD-MM-YYYY") %>)
+                        </div>
+                        <a href="/result/<%= fixture._id %>/check" class="btn btn-primary">Set or view Result</a>
+                    </li>
+                    <input type="submit" value="Delete Fixture" class="btn btn-danger">
+                </form>
+            <% }) %>
+        </ol>
+    </div>
+
+<%- include("../partials/footer") -%>
