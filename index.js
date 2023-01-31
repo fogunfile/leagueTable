@@ -7,6 +7,7 @@ const teamRoute = require("./routes/team")
 const moment    = require("moment");
 const resultRoute = require("./routes/result")
 const methodOverride = require("method-override");
+moment.locale("en-gb");
 
 
 app.use(express.urlencoded({extended: true}));
