@@ -33,7 +33,6 @@ module.exports = {
     },
     autoCreateFixtures: async (req, res) => {
         const teams = await Team.find();
-        // const arr = [0,1,2,3];
         
         shuffle(teams);
         const pairs = []
