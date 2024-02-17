@@ -1,0 +1,46 @@
+<%- include("partials/header") -%>
+        <header>
+            <div class="jumbotron">
+                <h1>Focus Ballers League</h1>
+            </div>
+        </header>
+        <div class="container">
+            <main>
+                <br>
+                <table id="standings">
+                    <thead>
+                        <tr>
+                            <td>S/N</td>
+                            <td>Team</td>
+                            <td>MP</td>
+                            <td>W</td>
+                            <td>D</td>
+                            <td>L</td>
+                            <td>GF</td>
+                            <td>GA</td>
+                            <td>GD</td>
+                            <td>Pts</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% teams.forEach((team, n)=>{ %>
+                            <tr>
+                                <td><%= n+1 %></td>
+                                <td><%= team.name %></td>
+                                <td><%= team.matchPlayed %></td>
+                                <td><%= team.win %></td>
+                                <td><%= team.draw %></td>
+                                <td><%= team.lose %></td>
+                                <td><%= team.goalsFor %></td>
+                                <td><%= team.goalsAgainst %></td>
+                                <td><%= team.goalDifference %></td>
+                                <td><%= team.points %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </main>
+            <br>
+        </div>
+
+<%- include("partials/footer") -%>

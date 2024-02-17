@@ -1,0 +1,29 @@
+<%- include("../partials/header") -%>
+    <header class="jumbotron">
+        <h1>All Results</h1>
+    </header>
+    <div class="container">
+        <ol>
+            <% results.forEach((result)=> { %>
+                <form action="/result/<%= result.fixture._id %>/?_method=DELETE" method="POST">
+                    <li class="h5">
+                        <span class="h5">
+                            <%= result.fixture.homeTeam.name %>
+                        </span>
+                        <span class="h4 mx-3">
+                            <%= result.homeTeamScore %> - <%= result.awayTeamScore %>
+                        </span>
+                        <span class="h5">
+                            <%= result.fixture.awayTeam.name %>
+                        </span>
+                        <div class="h5">
+                            (<%= moment(result.fixture.date).format("DD-MM-YYYY") %>)
+                        </div>
+                    </li>
+                    <input type="submit" value="Delete Result" class="btn btn-danger">
+                </form>
+            <% }) %>
+        </ol>
+    </div>
+
+<%- include("../partials/footer") -%>
