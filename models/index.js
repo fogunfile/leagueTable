@@ -17,3 +17,4 @@ connect();
 mongoose.Promise = Promise;
 
 // module.exports.db = require("./team");
+module.exports.db = require("./");

@@ -1,5 +1,9 @@
 const mongoose      =   require("mongoose")
     ,   db          =   require("../models");
+const Season        =   require("../models/season")
+const Result        =   require("../models/result")
+const Fixture       =   require("../models/fixture")
+const moment        =   require("moment");
 
 
     module.exports = {
@@ -54,5 +58,15 @@ const mongoose      =   require("mongoose")
             } catch (err) {
                 console.log(err);
             }
+        },
+
+        testGround: async (req, res) => {
+            const season2024 = await Season.create({
+                name: "2024",
+                start: moment("2024-02-06").startOf("day"), 
+                end: moment("2024-12-31").endOf("day"),
+
+            })
+            res.json(season2024);
         }
     }

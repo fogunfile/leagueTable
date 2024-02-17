@@ -9,6 +9,10 @@ const fixtureSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Team"
     },
+    season: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Season"
+    },
     info: {
         type: String,
     },

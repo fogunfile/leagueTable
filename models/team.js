@@ -7,37 +7,13 @@ const teamSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    matchPlayed: {
-        type: Number,
-        default: 0,
+    captain: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Person"
     },
-    win: {
-        type: Number,
-        default: 0,
-    },
-    draw: {
-        type: Number,
-        default: 0,
-    },
-    lose: {
-        type: Number,
-        default: 0,
-    },
-    goalsFor: {
-        type: Number,
-        default: 0,
-    },
-    goalsAgainst: {
-        type: Number,
-        default: 0,
-    },
-    goalDifference: {
-        type: Number,
-        default: 0,
-    },
-    points: {
-        type: Number,
-        default: 0,
+    coach: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Person"
     },
     date: {
         type: Date,

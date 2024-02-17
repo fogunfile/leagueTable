@@ -4,10 +4,26 @@ const Result = require("../models/result");
 const AddMatch = require("../utils/addMatch");
 const RemoveMatch = require("../utils/removeMatch");
 const deleteFixture = require("./fixture").deleteFixture
+const moment = require("moment");
 
 module.exports = {
     readResults: async (req, res) => {
         const results = await Result.find().sort({date: -1}).populate({path: "fixture", populate: {path: "homeTeam awayTeam"}});
+
+        // const ids = [];
+        // for(let result of results){
+        //     if(result.date > moment("2023-03-13") && result.date < moment("2023-03-16")){
+        //         // result.date = moment("2023-03-14 16:00");
+        //         // await result.save();
+        //         console.log(result._id);
+        //         ids.push(result._id)
+        //     }
+        // }
+        // console.log(ids)
+        // for(let j=0; j<ids.length; j++){
+        //     const oneResult = await Result.findByIdAndUpdate({_id: ids[j]}, {date: moment("2023-03-14 16:00")}, {new: true});
+        //     // console.log(oneResult);
+        // }
         res.render("result/", {results});
     },
     readOneResult: async (req, res) => {
